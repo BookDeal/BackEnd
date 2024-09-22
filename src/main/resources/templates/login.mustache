@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- 스타일 시트 링크 -->
+</head>
+<body>
+<div class="container">
+    <h2>로그인</h2>
+    {{#error}}
+        <div class="error-message">{{error}}</div>
+    {{/error}}
+    <form action="/login" method="POST">
+        <div class="form-group">
+            <label for="userId">사용자 이름:</label>
+            <input type="text" id="userId" name="userId" required>
+        </div>
+        <div class="form-group">
+            <label for="userPw">비밀번호:</label>
+            <input type="userPw" id="userPw" name="userPw" required>
+        </div>
+        <button type="submit">로그인</button>
+    </form>
+    <p>계정이 없으신가요? <a href="/register">회원가입</a></p>
+</div>
+</body>
+</html>
