@@ -3,7 +3,9 @@ package com.BookDeal.BookDeal.Dto;
 
 import com.BookDeal.BookDeal.Entity.Users;
 import lombok.*;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,15 +13,18 @@ import lombok.*;
 @Getter
 @Setter
 public class UserDTO {
+
     private Long id;
-    private String userId;
-    private String userPw;
-//    private String name;
-//    private String email;
-//    private Date join_date;
+
+    @Size(min = 3, max = 25)
+    @NotEmpty(message = "사용자ID는 필수항목입니다.")
+    private String username;
+
+    @NotEmpty(message = "비밀번호는 필수항목입니다.")
+    private String password;
 
     public Users toEntity() {
-        return new Users(id, userId, userPw);
+        return new Users(id, username, password);
 
     }
 }
