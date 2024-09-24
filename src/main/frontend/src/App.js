@@ -5,12 +5,13 @@ import LoginForm from './LoginForm';   // 로그인 폼 컴포넌트
 import HomePage from './Home';     // 루트 페이지 컴포넌트
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'; // react-router-dom에서 필요한 컴포넌트 임포트
 import MyPage from "./MyPage";
+import './App.css';  // CSS 파일을 임포트합니다.
 const App = () => {
     return (
         <Router>
             <div className="App">
                 <header>
-                    <h1>회원가입 및 로그인 페이지</h1>
+                    <h1>Book_Deal</h1>
                     <nav>
                         <ul>
 
