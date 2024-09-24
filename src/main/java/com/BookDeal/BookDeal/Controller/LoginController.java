@@ -9,6 +9,7 @@ import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -40,14 +41,27 @@ public class LoginController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+
     @PostMapping("/signup")
-    public ResponseEntity<Users> createId(@RequestBody UserDTO userDTO, BindingResult bindingResult){
+    public ResponseEntity<?> createId(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult) {
+        log.info("Trying signup");
+        log.info(String.valueOf(userDTO.getUsername().length()));
+        // 유효성 검사 결과 처리
+        if (bindingResult.hasErrors()) {
+            // 유효성 검사 오류가 있을 경우, 오류 메시지를 반환
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
 
-        log.info("trying signup");
-        Users created = loginService.signUp(userDTO);
-
-        return (created!=null)?(ResponseEntity.status(HttpStatus.OK).body(created)) :
-                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        try {
+            Users created = loginService.signUp(userDTO);
+            return (created != null) ?
+                    ResponseEntity.status(HttpStatus.OK).body(created) :
+                    ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } catch (Exception e) {
+            log.error("Error during signup", e);
+            // 서비스에서 발생한 예외에 대한 적절한 응답 처리
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("가입 처리 중 오류가 발생했습니다.");
+        }
     }
 
     @Autowired

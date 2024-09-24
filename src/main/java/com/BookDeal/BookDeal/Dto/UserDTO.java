@@ -2,16 +2,15 @@ package com.BookDeal.BookDeal.Dto;
 
 
 import com.BookDeal.BookDeal.Entity.Users;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Getter
-@Setter
+@Data
 public class UserDTO {
 
     private Long id;
