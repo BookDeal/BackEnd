@@ -5,12 +5,11 @@ import com.BookDeal.BookDeal.Entity.Users;
 import com.BookDeal.BookDeal.Repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 @Slf4j
 @Service
-public class LoginService {
+public class SignUpService {
     @Autowired
     private UserRepository userRepository;
     @Autowired

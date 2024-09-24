@@ -23,13 +23,6 @@ public class Users {
         private String password;
 
 
-
-//        public void patch(Article article) {
-//            if(article.title!=null){
-//                this.title=article.title;
-//            }
-//            if(article.content!=null)
-//                this.content= article.content;
         }
 
 
