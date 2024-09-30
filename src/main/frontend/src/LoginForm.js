@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios'; // axios를 가져옵니다.
 import { useNavigate } from 'react-router-dom'; // React Router에서 useNavigate를 가져옵니다.
 
-const LoginForm = () => {
+const LoginForm = ({ setIsLoggedIn }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 페이지 이동 기능을 추가합니다.
+
+
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -22,6 +25,7 @@ const LoginForm = () => {
 
 
             // 로그인 성공 시 홈 화면으로 리다이렉션합니다.
+            setIsLoggedIn(true); // 로그인 상태 변경
             navigate('/'); // 홈 화면으로 이동
         } catch (error) {
             console.error('로그인 실패:', error);
