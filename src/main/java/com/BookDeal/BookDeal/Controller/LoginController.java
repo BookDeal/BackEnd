@@ -81,7 +81,7 @@ public class LoginController {
             // 인증에 성공하면 JWT 토큰 생성
             String token = jwtTokenProvider.createToken(authentication);
             ResponseCookie cookie = ResponseCookie.from("jwt", token)
-                    .httpOnly(false)
+                    .httpOnly(true)
                     .secure(false) // HTTPS에서만 사용
                     .path("/")
                     .maxAge(3600) // 쿠키 유효 기간 설정 (1시간)
